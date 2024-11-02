@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  color: #222;
+  background-color: white;
+  justify-items: center;
+  align-items: center;
+  font-family: "Press Start 2P", sans-serif;
+  /* background-color: #60b347; */
+}
+
+/* LAYOUT */
+img {
+  height: 160px;
+}
+
+.logo {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.jiggers {
+
+  font-size: 50px;
+  font-family: "DM Serif Text";
+  margin-bottom: 0.3em;
+}
+
+.quiz {
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 80px;
+}
+
+.ligue {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.ligue h2 {
+  margin-bottom: 20px;
+}
