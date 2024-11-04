@@ -1,5 +1,8 @@
 "use strict";
 
+let timer;
+
+
 document.querySelector(".startbtn").addEventListener("mousedown", startDown);
 
 function startDown() {
@@ -9,9 +12,10 @@ function startDown() {
 
 function startUp() {
   document.removeEventListener("mouseup", startUp);
+  timer = setInterval(updateTime, 1000);
 
   document.querySelector(".start").style.display = "none";
-  document.querySelector(".ligue").style.display = "block";
+  document.querySelector(".ligue").style.display = "grid";
 }
 
 document
@@ -132,6 +136,7 @@ function checar() {
 
 function refresh(e) {
   document.addEventListener("mouseup", refreshUp);
+  document.querySelector(".check").style.backgroundColor = "#ddd";
 }
 
 function refreshUp(e) {
@@ -365,7 +370,6 @@ function startQ4(e) {
     .forEach((element) => element.addEventListener("mousedown", wrongDown));
 }
 
-
 let wrongElement;
 function wrongDown() {
   this.style.backgroundColor = "#ddd";
@@ -376,7 +380,7 @@ function wrongDown() {
 function wrongUp() {
   document.removeEventListener("mouseup", wrongUp);
 
-  if(wrongElement === document.querySelector(".qgui")) {
+  if (wrongElement === document.querySelector(".qgui")) {
     startQ5();
   }
 
@@ -389,7 +393,6 @@ function wrongUp() {
     .querySelectorAll(".fci")
     .forEach((element) => element.removeEventListener("mousedown", wrongDown));
 
-  document.querySelector(".qgui").removeEventListener("mousedown", rightDown);
 }
 
 function restartfc() {
@@ -398,4 +401,272 @@ function restartfc() {
 
 function startQ5() {
   document.querySelector(".q4").style.display = "none";
+  document.querySelector(".q5").style.display = "block";
+
+  document
+    .querySelectorAll(".aage")
+    .forEach((element) => element.addEventListener("mousedown", mouseDown2));
+}
+
+let occupied = new Array(10);
+occupied.fill(69);
+
+function mouseDown2(e) {
+  e.preventDefault();
+  this.style.zIndex = 10;
+  moveObject = this;
+  document.addEventListener("mousemove", mouseMove2);
+  this.addEventListener("mouseup", mouseUp2);
+  this.style.boxShadow = 'none';
+  moveObject.style.border = "1px solid #222";
+
+  moveObject.style.zIndex = "15";
+
+  document.querySelectorAll(".place").forEach((element) => {
+    element.style.backgroundColor = "white";
+    const posPlace = getPosition2(element);
+
+    if (
+      e.clientX + window.scrollX - posPlace.x < 136 &&
+      e.clientX + window.scrollX - posPlace.x > 0 &&
+      e.clientY + window.scrollY - posPlace.y < 136 &&
+      e.clientY + window.scrollY - posPlace.y > 0
+    ) {
+      if (
+        occupied[Number(element.className[element.className.length - 1])] ===
+        Number(moveObject.className[moveObject.className.length - 1])
+      ) {
+        occupied[Number(element.className[element.className.length - 1])] = 69;
+      }
+    }
+  });
+}
+
+function mouseMove2(e) {
+  e.preventDefault();
+  moveObject.style.position = "absolute";
+  moveObject.style.left = e.clientX - 25 + window.scrollX + "px";
+  moveObject.style.top = e.clientY - 10 + window.scrollY + "px";
+
+  document.querySelectorAll(".place").forEach((element) => {
+    if (
+      occupied[Number(element.className[element.className.length - 1])] !== 69
+    ) {
+      return;
+    }
+
+    const posPlace = getPosition2(element);
+
+    if (
+      e.clientX + window.scrollX - posPlace.x < 136 &&
+      e.clientX + window.scrollX - posPlace.x > 0 &&
+      e.clientY + window.scrollY - posPlace.y < 136 &&
+      e.clientY + window.scrollY - posPlace.y > 0
+    ) {
+      element.style.backgroundColor = "#ddd";
+    } else {
+      element.style.backgroundColor = "white";
+    }
+  });
+}
+
+function mouseUp2(e) {
+  document.removeEventListener("mousemove", mouseMove2);
+
+  moveObject.style.boxShadow = '4px 4px #aaa';
+
+  document.querySelectorAll(".place").forEach((element) => {
+    if (
+      occupied[Number(element.className[element.className.length - 1])] !== 69
+    ) {
+      return;
+    }
+
+    element.style.backgroundColor = "white";
+    const posPlace = getPosition2(element);
+
+    if (
+      e.clientX + window.scrollX - posPlace.x < 136 &&
+      e.clientX + window.scrollX - posPlace.x > 0 &&
+      e.clientY + window.scrollY - posPlace.y < 136 &&
+      e.clientY + window.scrollY - posPlace.y > 0
+    ) {
+      moveObject.style.left = posPlace.x + 6 + "px";
+      moveObject.style.border = "0px";
+      moveObject.style.top = posPlace.y + 3 + "px";
+      occupied[Number(element.className[element.className.length - 1])] =
+        Number(moveObject.className[moveObject.className.length - 1]);
+      moveObject.style.zIndex = "10";
+      moveObject.style.boxShadow = 'none';
+    }
+  });
+
+  let filled = true;
+  occupied.forEach((element) => {
+    if (element === 69) filled = false;
+  });
+
+  if(filled) {
+    console.log(occupied);
+    document.querySelector(".orderbtn").addEventListener("mousedown", orderDown);
+    document.querySelector(".orderbtn").style.color = "#222";
+  }
+  else {
+    document.querySelector(".orderbtn").removeEventListener("mousedown", orderDown);
+    document.querySelector(".orderbtn").style.color = "grey";
+  }
+}
+
+function getPosition2(element) {
+  const rect = element.getBoundingClientRect();
+  return {
+    x: rect.left + window.scrollX,
+    y: rect.top + window.scrollY,
+  };
+}
+
+function orderDown() {
+  document.querySelector(".orderbtn").style.backgroundColor = "#ddd";
+
+  document.addEventListener("mouseup", orderUp);
+}
+
+function orderUp() {
+  document.querySelector(".orderbtn").removeEventListener("mousedown", orderDown);
+  document.removeEventListener("mouseup", orderUp);
+
+  document.querySelector(".orderbtn").style.backgroundColor = "white";
+  document
+    .querySelectorAll(".aage")
+    .forEach((element) => element.removeEventListener("mousedown", mouseDown2));
+  orderCheck();
+}
+
+function orderCheck() {
+  const ans = [2, 7, 3, 6, 4, 8, 9, 1, 0, 5];
+
+  let correct = true;
+  for(let i = 0; i < 10; i++) {
+    if(occupied[i] === ans[i]) {
+      document.querySelector(".p" + i).style.backgroundColor = "#6f8";
+    }
+    else {
+      document.querySelector(".p" + i).style.backgroundColor = "#f66";
+      correct = false;
+    }
+  }
+
+  if(correct) {
+    document.querySelector(".orderbtn").textContent = "Próxima";
+    document.querySelector(".orderbtn").addEventListener("mousedown", proximaDown5);
+  }
+  else {
+    document.querySelector(".orderbtn").textContent = "Recomeçar";
+    document.querySelector(".orderbtn").addEventListener("mousedown", restartDown5);
+  }
+}
+
+function restartDown5() {
+  document.querySelector(".orderbtn").style.backgroundColor = "#ddd";
+  document.addEventListener("mouseup", e => location.reload());
+}
+
+function proximaDown5() {
+  document.querySelector(".orderbtn").style.backgroundColor = "#ddd";
+  document.addEventListener("mouseup", proximaUp5);
+}
+
+function proximaUp5() {
+  document.removeEventListener("mouseup", proximaUp5);
+
+  startQ6();
+}
+
+function startQ6() {
+  document.querySelector(".q5").style.display = "none";
+  document.querySelector(".q6").style.display = "block";
+
+  document.querySelectorAll(".option").forEach(option => {
+    option.addEventListener("mousedown", optDown);
+  })
+}
+
+let opt;
+function optDown() {
+  this.style.backgroundColor = "#ddd";
+  opt = this;
+
+  document.addEventListener("mouseup", optUp);
+}
+
+function optUp() {
+  document.removeEventListener("mouseup", optUp);
+
+  document.querySelectorAll(".option").forEach(option => {
+    option.removeEventListener("mousedown", optDown);
+  })
+
+  if(opt.className[opt.className.length - 1] === "4") {
+    opt.style.backgroundColor = "#6f8";
+    startQ7();
+  }
+  else {
+    opt.style.backgroundColor = "#f66";
+    document.querySelector(".restartopt").style.display = "block";
+    document.querySelector(".restartopt").addEventListener("mousedown", restartDown6);
+  }
+}
+
+function restartDown6() {
+  this.style.backgroundColor = "#ddd";
+  document.addEventListener("mouseup", () => location.reload());
+}
+
+function startQ7() {
+  document.querySelector(".videodogos").pause();
+  document.querySelector(".q6").style.display = "none";
+  startFim();
+}
+
+function startFim() {
+  document.querySelector(".maindiv").style.display = "none";
+  document.querySelector(".fim").style.display = "grid";
+
+  clearInterval(timer);
+
+  document.querySelector(".restartend").addEventListener("mousedown", endDown);
+}
+
+function endDown() {
+  this.style.backgroundColor = "#ddd";
+  document.addEventListener("mouseup", () => location.reload());
+}
+
+let minutes = 0;
+let seconds = 0;
+
+function updateTime() {
+  seconds++;
+
+  if(seconds === 60) {
+    seconds = 0;
+    minutes++;
+  }
+  if(minutes == 100) {
+    clearInterval(timer);
+    minutes = 99;
+    seconds = 59;
+  } 
+
+  document.querySelectorAll(".min2")[0].textContent = Math.trunc(minutes / 10);
+  document.querySelectorAll(".min1")[0].textContent = minutes % 10;
+
+  document.querySelectorAll(".sec2")[0].textContent = Math.trunc(seconds / 10);
+  document.querySelectorAll(".sec1")[0].textContent = seconds % 10;
+
+  document.querySelectorAll(".min2")[1].textContent = Math.trunc(minutes / 10);
+  document.querySelectorAll(".min1")[1].textContent = minutes % 10;
+
+  document.querySelectorAll(".sec2")[1].textContent = Math.trunc(seconds / 10);
+  document.querySelectorAll(".sec1")[1].textContent = seconds % 10;
 }

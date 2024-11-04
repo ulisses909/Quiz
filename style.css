@@ -14,12 +14,15 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   min-width: 1440px;
+  justify-items: center;
 }
 
 body {
   color: #222;
   background-color: white;
+  display: grid;
   justify-items: center;
+  justify-content: center;
   align-items: center;
   font-family: "Press Start 2P", sans-serif;
   /* background-color: #60b347; */
@@ -68,10 +71,12 @@ img {
 
 .imgbox {
   width: 140px;
+  display: grid;
   justify-items: center;
 }
 
 .linha {
+  box-shadow: 8px 8px #aaa;
   border: 1px solid #222;
   width: 130px;
   height: 40px;
@@ -85,15 +90,15 @@ img {
   display: flex;
 }
 
-.middle {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .nome {
+  border: 1px solid #222;
+
   background-color: white;
-  width: 11em;
+  width: 12em;
   padding: 0.7em;
+  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
   position: relative;
 
   cursor: pointer;
@@ -106,6 +111,7 @@ img {
 }
 
 .check {
+  box-shadow: 8px 8px #aaa;
   font-family: inherit;
   font-size: 2rem;
   background-color: white;
@@ -136,6 +142,7 @@ img {
 }
 
 .mapa {
+  box-shadow: 8px 8px #aaa;
   height: 420px;
   border: 1px solid #222;
   margin: 0px;
@@ -159,6 +166,7 @@ img {
 }
 
 .confirm {
+  box-shadow: 8px 8px #aaa;
   font-family: inherit;
   font-size: 2rem;
   background-color: white;
@@ -172,7 +180,7 @@ img {
 
   width: 1088px;
   position: absolute;
-  bottom: -20px;
+  bottom: -0px;
   right: 0px;
 
   cursor: pointer;
@@ -223,6 +231,8 @@ img {
 .problema1 {
   height: 420px;
   margin-right: 40px;
+  border: 1px solid #222;
+  box-shadow: 8px 8px #aaa;
 }
 
 .problema2 {
@@ -236,6 +246,7 @@ img {
   border-bottom: 0px;
   margin-top: 90px;
   margin-left: 40px;
+  box-shadow: 8px 8px #aaa;
 }
 
 .q3 {
@@ -301,6 +312,7 @@ img {
 
 .personbox {
   display: flex;
+  
 }
 .q4 h2 {
   margin-bottom: 20px;
@@ -314,6 +326,8 @@ img {
   padding: 10px;
 
   cursor: pointer;
+
+  box-shadow: 8px 8px #aaa;
 }
 
 .restartfc {
@@ -334,10 +348,12 @@ img {
 
   user-select: none;
 
+  box-shadow: 8px 8px #aaa;
   display: none;
 }
 
 .startbtn {
+  box-shadow: 8px 8px #aaa;
   font-family: inherit;
   font-size: 3.5rem;
   background-color: white;
@@ -354,4 +370,236 @@ img {
   top: 0px;
 
   user-select: none;
+}
+
+.q5 {
+  display: none;
+}
+
+.q5 h2 {
+  margin-bottom: 20px;
+}
+
+.aage {
+  border: 1px solid #222;
+  height: 120px;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+
+  box-shadow: 4px 4px #aaa;
+}
+
+.orderblock {
+  display: flex;
+  margin-bottom: 20px;
+  box-shadow: 8px 8px #aaa;
+}
+
+.pl {
+  width: 136px;
+  height: 136px;
+  border: 1px solid #222;
+  border-right: 0px;
+}
+
+.p9 {
+  width: 136px;
+  height: 136px;
+  border: 1px solid #222;
+}
+
+.bottomblock {
+  display: flex;
+}
+
+.imgblock {
+  width: 670px;
+  height: 130px;
+}
+
+
+.orderbtn {
+  box-shadow: 8px 8px #aaa;
+  margin-left: 70px;
+  margin-top: 85px;
+
+  color: grey;
+
+  font-family: inherit;
+  font-size: 2rem;
+  background-color: white;
+  padding: 1em;
+  border: 1px solid #222;
+
+  cursor: pointer;
+
+  width: 615px;
+  height: 100px;
+  position: relative;
+  top: 0px;
+
+  user-select: none;
+}
+
+.q6 {
+  display: none;
+}
+
+.q6 h2 {
+  margin-bottom: 30px;
+}
+
+.videodogos {
+  border: 2px solid #222;
+  width: 237px;
+  box-shadow: 8px 8px #aaa;
+}
+
+.optbottom {
+  display: flex;
+}
+
+.optionbox {
+  display: block;
+}
+
+.option {
+  box-shadow: 8px 8px #aaa;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 60px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  background-color: white;
+  padding: 1em;
+  border: 1px solid #222;
+
+  cursor: pointer;
+
+  width: 500px;
+  height: 60px;
+
+  user-select: none;
+}
+
+.restartopt {
+  box-shadow: 8px 8px #aaa;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 60px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  background-color: white;
+  padding: 1em;
+  border: 1px solid #222;
+
+  display: none;
+
+  cursor: pointer;
+
+  width: 500px;
+  height: 80px;
+
+  user-select: none;
+}
+
+.fim {
+  display: none;
+}
+
+.fim h3 {
+  margin-top: 50px;
+  font-size: 2.2rem;
+}
+
+.logo2 {
+  border: 1px solid #222;
+  box-shadow: 8px 8px #aaa;
+  margin-top: 3em;
+  padding: 3em;
+  padding-top: 1em;
+}
+
+.jiggers2 {
+  margin-bottom: 0.2em;
+  font-size: 6rem;
+  font-family: "DM Serif Text";
+}
+
+.quiz2 {
+  font-size: 10rem;
+}
+
+.restartend {
+  box-shadow: 8px 8px #aaa;
+  margin-top: 40px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  background-color: white;
+  padding: 1em;
+  border: 1px solid #222;
+
+  cursor: pointer;
+
+  width: 500px;
+  height: 80px;
+
+  user-select: none;
+}
+
+.timer1 {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+
+  padding: 15px;
+
+  border: 1px solid #222;
+  box-shadow: 4px 4px #aaa;
+}
+
+.timer2 {
+  display: flex;
+}
+
+.tdigit {
+  font-size: 20px;
+}
+
+.tdigit2 {
+  font-size: 28px;
+}
+
+.seutempo {
+  margin-bottom: 1em;
+}
+
+.showtime {
+  border: 1px solid #222;
+  box-shadow: 8px 8px #aaa;
+  display: grid;
+  justify-items: center;
+  padding: 2em;
+  margin-top: 30px;
+}
+
+.endbottom {
+  display: flex;
+}
+
+.endleft {
+  display: grid;
+  justify-items: right;
+}
+
+.dogospreto {
+  border: 1px solid #222;
+  box-shadow: 8px 8px #aaa;
+  margin-top: 30px;
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 230px;
 }
