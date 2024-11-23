@@ -165,6 +165,8 @@ function startQ2() {
   const posMapa = getPosition(document.querySelector(".mapa"));
   document.querySelector(".certo").style.left = posMapa.x - 235 + "px";
   document.querySelector(".certo").style.top = posMapa.y - 25 + "px";
+
+  startQ3();
 }
 
 function selectLocation(e) {
